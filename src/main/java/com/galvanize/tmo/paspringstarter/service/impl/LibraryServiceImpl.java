@@ -15,6 +15,10 @@ public class LibraryServiceImpl implements LibraryService {
     public LibraryServiceImpl() {
     }
 
+    private void resetSequence() {
+        idSequence = 1;
+    }
+
     @Override
     public List<Book> getAllBooks() {
         Collections.sort(listOfLibraryBooks);
@@ -24,6 +28,7 @@ public class LibraryServiceImpl implements LibraryService {
     @Override
     public void deleteAllBooks() {
         listOfLibraryBooks.clear();
+        resetSequence();
     }
 
     @Override
