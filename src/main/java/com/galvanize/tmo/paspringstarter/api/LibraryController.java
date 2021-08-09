@@ -1,6 +1,7 @@
 package com.galvanize.tmo.paspringstarter.api;
 
 import com.galvanize.tmo.paspringstarter.model.Book;
+import com.galvanize.tmo.paspringstarter.model.BookWrapper;
 import com.galvanize.tmo.paspringstarter.service.LibraryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,8 +30,10 @@ public class LibraryController {
      * @return list of all books sorted by title
      */
     @GetMapping("/books")
-    public ResponseEntity<List<Book>> getBooks() {
-        return new ResponseEntity<>(libraryService.getAllBooks(), HttpStatus.OK);
+    public ResponseEntity<BookWrapper> getBooks() {
+        BookWrapper bookWrapper = new BookWrapper();
+        bookWrapper.setBooks(libraryService.getAllBooks());
+        return new ResponseEntity<>(bookWrapper, HttpStatus.OK);
     }
 
     /**
